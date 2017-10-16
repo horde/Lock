@@ -10,7 +10,7 @@
   <email>ben@alkaloid.net</email>
   <active>yes</active>
  </lead>
- <date>2016-09-01</date>
+ <date>2017-10-17</date>
  <version>
   <release>2.1.5</release>
   <api>1.1.0</api>
@@ -25,13 +25,6 @@
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <dir name="doc">
-    <dir name="Horde">
-     <dir name="Lock">
-      <file name="COPYING" role="doc" />
-     </dir> <!-- /doc/Horde/Lock -->
-    </dir> <!-- /doc/Horde -->
-   </dir> <!-- /doc -->
    <dir name="lib">
     <dir name="Horde">
      <dir name="Lock">
@@ -67,6 +60,7 @@
      </dir> <!-- /test/Horde/Lock -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
+   <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -120,12 +114,12 @@
  </dependencies>
  <phprelease>
   <filelist>
-   <install as="COPYING" name="doc/Horde/Lock/COPYING" />
    <install as="Horde/Lock.php" name="lib/Horde/Lock.php" />
    <install as="Horde/Lock/Exception.php" name="lib/Horde/Lock/Exception.php" />
    <install as="Horde/Lock/Mongo.php" name="lib/Horde/Lock/Mongo.php" />
    <install as="Horde/Lock/Null.php" name="lib/Horde/Lock/Null.php" />
    <install as="Horde/Lock/Sql.php" name="lib/Horde/Lock/Sql.php" />
+   <install as="LICENSE" name="LICENSE" />
    <install as="migration/1_horde_lock_base_tables.php" name="migration/Horde/Lock/1_horde_lock_base_tables.php" />
    <install as="migration/2_horde_lock_upgrade_column_types.php" name="migration/Horde/Lock/2_horde_lock_upgrade_column_types.php" />
    <install as="migration/3_horde_lock_fix_owner_width.php" name="migration/Horde/Lock/3_horde_lock_fix_owner_width.php" />
@@ -370,7 +364,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2016-09-01</date>
+   <date>2017-10-17</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
