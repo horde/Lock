@@ -10,7 +10,7 @@
   <email>ben@alkaloid.net</email>
   <active>yes</active>
  </lead>
- <date>2017-10-17</date>
+ <date>2017-10-20</date>
  <version>
   <release>2.1.5</release>
   <api>1.1.0</api>
@@ -56,7 +56,6 @@
       <file name="AllTests.php" role="test" />
       <file name="bootstrap.php" role="test" />
       <file name="conf.php.dist" role="test" />
-      <file name="phpunit.xml" role="test" />
      </dir> <!-- /test/Horde/Lock -->
     </dir> <!-- /test/Horde -->
    </dir> <!-- /test -->
@@ -126,7 +125,6 @@
    <install as="Horde/Lock/AllTests.php" name="test/Horde/Lock/AllTests.php" />
    <install as="Horde/Lock/bootstrap.php" name="test/Horde/Lock/bootstrap.php" />
    <install as="Horde/Lock/conf.php.dist" name="test/Horde/Lock/conf.php.dist" />
-   <install as="Horde/Lock/phpunit.xml" name="test/Horde/Lock/phpunit.xml" />
    <install as="Horde/Lock/Storage/MongoTest.php" name="test/Horde/Lock/Storage/MongoTest.php" />
    <install as="Horde/Lock/Storage/SqlTest.php" name="test/Horde/Lock/Storage/SqlTest.php" />
    <install as="Horde/Lock/Storage/TestBase.php" name="test/Horde/Lock/Storage/TestBase.php" />
@@ -364,7 +362,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-17</date>
+   <date>2017-10-20</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
 * 
