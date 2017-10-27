@@ -10,7 +10,7 @@
   <email>ben@alkaloid.net</email>
   <active>yes</active>
  </lead>
- <date>2017-10-20</date>
+ <date>2017-10-27</date>
  <version>
   <release>2.1.5</release>
   <api>1.1.0</api>
@@ -24,6 +24,13 @@
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
+   <dir name="doc">
+    <dir name="Horde">
+     <dir name="Lock">
+      <file name="CHANGES" role="doc" />
+     </dir> <!-- /doc/Horde/Lock -->
+    </dir> <!-- /doc/Horde -->
+   </dir> <!-- /doc -->
    <dir name="lib">
     <dir name="Horde">
      <dir name="Lock">
@@ -112,6 +119,7 @@
  </dependencies>
  <phprelease>
   <filelist>
+   <install as="CHANGES" name="doc/Horde/Lock/CHANGES" />
    <install as="Horde/Lock.php" name="lib/Horde/Lock.php" />
    <install as="Horde/Lock/Exception.php" name="lib/Horde/Lock/Exception.php" />
    <install as="Horde/Lock/Mongo.php" name="lib/Horde/Lock/Mongo.php" />
@@ -361,7 +369,7 @@
    <stability>
     <release>stable</release>
     <api>stable</api></stability>
-   <date>2017-10-20</date>
+   <date>2017-10-27</date>
    <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
    <notes>
    </notes>
