@@ -1,8 +1,8 @@
 {
     "name": "horde/lock",
-    "description": "Horde Resource Locking System",
+    "description": "Resource locking library",
     "type": "library",
-    "homepage": "https://pear.horde.org",
+    "homepage": "https://www.horde.org/libraries/Horde_Lock",
     "license": "LGPL-2.1",
     "authors": [
         {
@@ -12,7 +12,7 @@
         }
     ],
     "version": "2.1.5",
-    "time": "2016-09-01",
+    "time": "2017-11-14",
     "repositories": [
         {
             "type": "pear",
