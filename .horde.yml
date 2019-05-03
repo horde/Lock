@@ -2,7 +2,7 @@
 id: Lock
 name: Lock
 full: Resource locking library
-description: The Horde resource locking system.
+description: A library that implements a resource locking system.
 list: dev
 type: library
 homepage: https://www.horde.org/libraries/Horde_Lock
