@@ -8,18 +8,19 @@
  * @package    Lock
  * @subpackage UnitTests
  */
+
 abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
 {
     protected $_lock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_lock = $this->_getBackend();
     }
 
     abstract protected function _getBackend();
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_lock);
     }
@@ -135,8 +136,8 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
             'myuser', 'myapp', 'myprincipal', 100, Horde_Lock::TYPE_SHARED);
         $lock3 = $this->_lock->setLock(
             'myuser', 'myapp', 'myprincipal', 100, Horde_Lock::TYPE_EXCLUSIVE);
-        $this->assertInternalType('string', $lock1);
-        $this->assertInternalType('string', $lock2);
+        $this->assertIsString($lock1);
+        $this->assertIsString($lock2);
         $this->assertFalse($lock3);
         $this->assertNotEquals($lock1, $lock2);
 
@@ -146,7 +147,7 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
             'myuser', 'myapp', 'myprincipal2', 100, Horde_Lock::TYPE_EXCLUSIVE);
         $lock6 = $this->_lock->setLock(
             'myuser', 'myapp', 'myprincipal2', 100, Horde_Lock::TYPE_SHARED);
-        $this->assertInternalType('string', $lock4);
+        $this->assertIsString($lock4);
         $this->assertFalse($lock5);
         $this->assertFalse($lock6);
 
@@ -161,9 +162,9 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
         $lock10 = $this->_lock->setLock(
             'myuser', 'myapp', 'myprincipal4', Horde_Lock::PERMANENT,
             Horde_Lock::TYPE_EXCLUSIVE);
-        $this->assertInternalType('string', $lock7);
-        $this->assertInternalType('string', $lock8);
-        $this->assertInternalType('string', $lock9);
+        $this->assertIsString($lock7);
+        $this->assertIsString($lock8);
+        $this->assertIsString($lock9);
         $this->assertFalse($lock10);
         $this->assertNotEquals($lock7, $lock9);
     }
