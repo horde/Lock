@@ -7,7 +7,10 @@
  * @package    Lock
  * @subpackage UnitTests
  */
-class Horde_Lock_Storage_MongoTest extends Horde_Lock_Storage_TestBase
+namespace Horde\Lock\Storage;
+use Horde_Lock_Storage_TestBase as TestBase;
+
+class MongoTest extends TestBase
 {
     private $_dbname = 'horde_lock_mongodbtest';
     private $_mongo;
@@ -32,7 +35,7 @@ class Horde_Lock_Storage_MongoTest extends Horde_Lock_Storage_TestBase
         ));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (!empty($this->_mongo)) {
             $this->_mongo->selectDB(null)->drop();

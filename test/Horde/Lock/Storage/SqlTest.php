@@ -7,11 +7,16 @@
  * @package    Lock
  * @subpackage UnitTests
  */
-class Horde_Lock_Storage_SqlTest extends Horde_Lock_Storage_TestBase
+namespace Horde\Lock\Storage;
+use Horde_Lock_Storage_TestBase as TestBase;
+use \Horde_Test_Factory_Db;
+use \Horde_Lock_Sql;
+
+class SqlTest extends TestBase
 {
     protected static $_migrationDir;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$_migrationDir = __DIR__ . '/../../../../migration/Horde/Lock';
 
