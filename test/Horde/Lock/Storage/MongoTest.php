@@ -32,7 +32,7 @@ class Horde_Lock_Storage_MongoTest extends Horde_Lock_Storage_TestBase
         ));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (!empty($this->_mongo)) {
             $this->_mongo->selectDB(null)->drop();

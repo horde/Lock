@@ -11,7 +11,7 @@ class Horde_Lock_Storage_SqlTest extends Horde_Lock_Storage_TestBase
 {
     protected static $_migrationDir;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$_migrationDir = __DIR__ . '/../../../../migration/Horde/Lock';
 
