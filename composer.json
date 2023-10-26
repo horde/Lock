@@ -14,24 +14,18 @@
     "version": "2.1.5",
     "time": "2017-11-11",
     "repositories": [
-        {
-            "type": "pear",
-            "url": "https://pear.horde.org"
-        }
     ],
     "require": {
         "php": "^5.3 || ^7",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_Support": "^2"
+        "horde/exception": "^2",
+        "horde/support": "^2"
     },
     "suggest": {
-        "pear-pear.horde.org/Horde_Db": "^2",
-        "pear-pear.horde.org/Horde_Log": "^2",
-        "pear-pear.horde.org/Horde_Mongo": "^1"
+        "horde/db": "^2",
+        "horde/log": "^2",
+        "horde/mongo": "^1"
     },
     "replace": {
-        "pear-pear.horde.org/Horde_Lock": "2.*",
-        "pear-horde/Horde_Lock": "2.*"
     },
     "autoload": {
         "psr-0": {
