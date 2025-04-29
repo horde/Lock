@@ -195,7 +195,9 @@ class Horde_Lock_Sql extends Horde_Lock
                         $expiration, $type);
 
         try {
-            $this->_db->insert($sql, $values);
+            // It is important to hand over the primary key value explicitly in insert(..., $lockid, ..)
+            // as we manually define the PK value and do not want the SQL driver to rely on SQL sequence here
+            $this->_db->insert($sql, $values, 'Inserting lock into table ' . $this->_params['table'] , null, $lockid, null);
         } catch (Horde_Db_Exception $e) {
             throw new Horde_Lock_Exception($e);
         }
