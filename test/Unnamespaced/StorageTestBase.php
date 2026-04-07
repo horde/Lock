@@ -1,32 +1,40 @@
 <?php
 
 /**
- * @author     Jan Schneider <jan@horde.org>
- * @author     Michael Slusarz <slusarz@horde.org>
- * @category   Horde
- * @ignore
- * @license    http://www.horde.org/licenses/lgpl21 LGPL
- * @package    Lock
- * @subpackage UnitTests
+ * Copyright 2013-2026 Horde LLC (http://www.horde.org/)
+ *
+ * See the enclosed file LICENSE for license information (LGPL). If you
+ * did not receive this file, see http://www.horde.org/licenses/lgpl21.
  */
 
-abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Abstract base test class for Lock storage backends.
+ *
+ * Subclasses must implement _getBackend() to provide the concrete driver.
+ * This class is intentionally unnamespaced so that both unit and integration
+ * tests can extend it without autoloading conflicts.
+ */
+#[CoversNothing]
+abstract class StorageTestBase extends TestCase
 {
-    protected $_lock;
+    protected Horde_Lock $_lock;
 
     protected function setUp(): void
     {
         $this->_lock = $this->_getBackend();
     }
 
-    abstract protected function _getBackend();
+    abstract protected function _getBackend(): Horde_Lock;
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_lock);
     }
 
-    public function testGetLockInfo()
+    public function testGetLockInfo(): void
     {
         $lock1 = $this->_lock->setLock(
             'myuser',
@@ -44,15 +52,19 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
             $info1['lock_expiry_timestamp'],
             $info1['lock_origin_timestamp'] + 100
         );
-        unset($info1['lock_update_timestamp'],
+        unset(
+            $info1['lock_update_timestamp'],
             $info1['lock_origin_timestamp'],
-            $info1['lock_expiry_timestamp']);
+            $info1['lock_expiry_timestamp']
+        );
         $this->assertEquals(
-            ['lock_id' => $lock1,
+            [
+                'lock_id' => $lock1,
                 'lock_owner' => 'myuser',
                 'lock_scope' => 'myapp',
                 'lock_principal' => 'myprincipal',
-                'lock_type' => Horde_Lock::TYPE_SHARED],
+                'lock_type' => Horde_Lock::TYPE_SHARED,
+            ],
             $info1
         );
 
@@ -72,20 +84,24 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
             $info2['lock_expiry_timestamp'],
             $info2['lock_origin_timestamp'] + 1000
         );
-        unset($info2['lock_update_timestamp'],
+        unset(
+            $info2['lock_update_timestamp'],
             $info2['lock_origin_timestamp'],
-            $info2['lock_expiry_timestamp']);
+            $info2['lock_expiry_timestamp']
+        );
         $this->assertEquals(
-            ['lock_id' => $lock2,
+            [
+                'lock_id' => $lock2,
                 'lock_owner' => 'myuser',
                 'lock_scope' => 'myapp',
                 'lock_principal' => 'myprincipal2',
-                'lock_type' => Horde_Lock::TYPE_EXCLUSIVE],
+                'lock_type' => Horde_Lock::TYPE_EXCLUSIVE,
+            ],
             $info2
         );
     }
 
-    public function testGetLocks()
+    public function testGetLocks(): void
     {
         $lock1 = $this->_lock->setLock(
             'myuser',
@@ -127,7 +143,7 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
         );
     }
 
-    public function testResetLock()
+    public function testResetLock(): void
     {
         $lock1 = $this->_lock->setLock(
             'myuser',
@@ -190,7 +206,7 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
         );
     }
 
-    public function testSetLock()
+    public function testSetLock(): void
     {
         $lock1 = $this->_lock->setLock(
             'myuser',
@@ -279,7 +295,7 @@ abstract class Horde_Lock_Storage_TestBase extends Horde_Test_Case
         $this->assertNotEquals($lock7, $lock9);
     }
 
-    public function testClearLock()
+    public function testClearLock(): void
     {
         $lock1 = $this->_lock->setLock(
             'myuser',
