@@ -39,6 +39,11 @@ dependencies:
       horde/db: ^3
       horde/log: ^3
       horde/mongo: ^2
+  dev:
+    composer:
+      horde/db: ^3
+      horde/log: ^3
+      horde/test: ^3
 keywords:
   - resource_locking
   - semaphore

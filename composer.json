@@ -28,7 +28,11 @@
         "horde/exception": "^3",
         "horde/support": "^3"
     },
-    "require-dev": {},
+    "require-dev": {
+        "horde/db": "^3",
+        "horde/log": "^3",
+        "horde/test": "^3"
+    },
     "suggest": {
         "horde/db": "^3",
         "horde/log": "^3",
@@ -41,8 +45,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Horde\\Lock\\Test\\": "test/"
-        }
+            "Horde\\Lock\\Test\\Unit\\": "test/unit/",
+            "Horde\\Lock\\Test\\Integration\\": "test/integration/"
+        },
+        "classmap": [
+            "test/Unnamespaced/"
+        ]
     },
     "config": {
         "allow-plugins": {
