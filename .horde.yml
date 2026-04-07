@@ -8,10 +8,16 @@ type: library
 homepage: https://www.horde.org/libraries/Horde_Lock
 authors:
   -
+    name: Ralf Lang
+    user: rlang
+    email: ralf.lang@ralf-lang.de
+    active: true
+    role: maintainer
+  -
     name: Ben Klang
     user: bklang
     email: ben@alkaloid.net
-    active: true
+    active: false
     role: lead
 version:
   release: 3.0.0alpha5
@@ -24,7 +30,7 @@ license:
   uri: http://www.horde.org/licenses/lgpl21
 dependencies:
   required:
-    php: ^7.4 || ^8
+    php: ^8.1
     composer:
       horde/exception: ^3
       horde/support: ^3
@@ -33,3 +39,7 @@ dependencies:
       horde/db: ^3
       horde/log: ^3
       horde/mongo: ^2
+keywords:
+  - resource_locking
+  - semaphore
+vendor: horde
