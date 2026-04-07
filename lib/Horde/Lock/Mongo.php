@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2013-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2013-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you did
  * not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -23,14 +24,14 @@
 class Horde_Lock_Mongo extends Horde_Lock
 {
     /* Field names. */
-    const EXPIRY_TS = 'expiry_ts';
-    const LID = 'lid';
-    const ORIGIN_TS = 'origin_ts';
-    const OWNER = 'owner';
-    const PRINCIPAL = 'principal';
-    const SCOPE = 'scope';
-    const TYPE = 'type';
-    const UPDATE_TS = 'update_ts';
+    public const EXPIRY_TS = 'expiry_ts';
+    public const LID = 'lid';
+    public const ORIGIN_TS = 'origin_ts';
+    public const OWNER = 'owner';
+    public const PRINCIPAL = 'principal';
+    public const SCOPE = 'scope';
+    public const TYPE = 'type';
+    public const UPDATE_TS = 'update_ts';
 
     /**
      * The MongoDB Collection object for the cache data.
@@ -45,7 +46,7 @@ class Horde_Lock_Mongo extends Horde_Lock
      *
      * @var array
      */
-    protected $_map = array(
+    protected $_map = [
         self::EXPIRY_TS => 'lock_expiry_timestamp',
         self::LID => 'lock_id',
         self::ORIGIN_TS => 'lock_origin_timestamp',
@@ -53,8 +54,8 @@ class Horde_Lock_Mongo extends Horde_Lock
         self::PRINCIPAL => 'lock_principal',
         self::SCOPE => 'lock_scope',
         self::TYPE => 'lock_type',
-        self::UPDATE_TS => 'lock_update_timestamp'
-    );
+        self::UPDATE_TS => 'lock_update_timestamp',
+    ];
 
     /**
      * Constructor.
@@ -65,15 +66,15 @@ class Horde_Lock_Mongo extends Horde_Lock
      *   - mongo_db: [REQUIRED] (Horde_Mongo_Client) A MongoDB client object.
      * </pre>
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         if (!isset($params['mongo_db'])) {
             throw new InvalidArgumentException('Missing mongo_db parameter.');
         }
 
-        parent::__construct(array_merge(array(
-            'collection' => 'horde_locks'
-        ), $params));
+        parent::__construct(array_merge([
+            'collection' => 'horde_locks',
+        ], $params));
 
         $this->_db = $this->_params['mongo_db']
             ->selectCollection(null, $this->_params['collection']);
@@ -93,13 +94,13 @@ class Horde_Lock_Mongo extends Horde_Lock
      */
     public function getLockInfo($lockid)
     {
-        $query = array(
+        $query = [
             self::LID => $lockid,
-            '$or' => array(
-                array(self::EXPIRY_TS => array('$gte' => time()),),
-                array(self::EXPIRY_TS => Horde_Lock::PERMANENT)
-            )
-        );
+            '$or' => [
+                [self::EXPIRY_TS => ['$gte' => time()],],
+                [self::EXPIRY_TS => Horde_Lock::PERMANENT],
+            ],
+        ];
 
         try {
             return $this->_mapFields($this->_db->findOne($query));
@@ -112,12 +113,12 @@ class Horde_Lock_Mongo extends Horde_Lock
      */
     public function getLocks($scope = null, $principal = null, $type = null)
     {
-        $query = array(
-            '$or' => array(
-                array(self::EXPIRY_TS => array('$gte' => time()),),
-                array(self::EXPIRY_TS => Horde_Lock::PERMANENT)
-            )
-        );
+        $query = [
+            '$or' => [
+                [self::EXPIRY_TS => ['$gte' => time()],],
+                [self::EXPIRY_TS => Horde_Lock::PERMANENT],
+            ],
+        ];
 
         // Check to see if we need to filter the results
         if (!empty($principal)) {
@@ -136,7 +137,7 @@ class Horde_Lock_Mongo extends Horde_Lock
             throw new Horde_Lock_Exception($e);
         }
 
-        $locks = array();
+        $locks = [];
         foreach ($result as $val) {
             $locks[$val[self::LID]] = $this->_mapFields($val);
         }
@@ -159,16 +160,16 @@ class Horde_Lock_Mongo extends Horde_Lock
 
         try {
             $this->_db->update(
-                array(
-                    self::EXPIRY_TS => array('$ne' => Horde_Lock::PERMANENT),
-                    self::LID => $lockid
-                ),
-                array(
-                    '$set' => array(
+                [
+                    self::EXPIRY_TS => ['$ne' => Horde_Lock::PERMANENT],
+                    self::LID => $lockid,
+                ],
+                [
+                    '$set' => [
                         self::EXPIRY_TS => $expiration,
-                        self::UPDATE_TS => $now
-                    )
-                )
+                        self::UPDATE_TS => $now,
+                    ],
+                ]
             );
         } catch (MongoException $e) {
             throw new Horde_Lock_Exception($e);
@@ -179,9 +180,13 @@ class Horde_Lock_Mongo extends Horde_Lock
 
     /**
      */
-    public function setLock($requestor, $scope, $principal,
-                            $lifetime = 1, $type = Horde_Lock::TYPE_SHARED)
-    {
+    public function setLock(
+        $requestor,
+        $scope,
+        $principal,
+        $lifetime = 1,
+        $type = Horde_Lock::TYPE_SHARED
+    ) {
         $oldlocks = $this->getLocks(
             $scope,
             $principal,
@@ -210,7 +215,7 @@ class Horde_Lock_Mongo extends Horde_Lock
             : ($now + $lifetime);
 
         try {
-            $doc = array(
+            $doc = [
                 self::EXPIRY_TS => $expiration,
                 self::LID => $lockid,
                 self::ORIGIN_TS => $now,
@@ -218,8 +223,8 @@ class Horde_Lock_Mongo extends Horde_Lock
                 self::PRINCIPAL => $principal,
                 self::SCOPE => $scope,
                 self::TYPE => $type,
-                self::UPDATE_TS => $now
-            );
+                self::UPDATE_TS => $now,
+            ];
             $this->_db->insert($doc);
         } catch (MongoException $e) {
             throw new Horde_Lock_Exception($e);
@@ -229,7 +234,10 @@ class Horde_Lock_Mongo extends Horde_Lock
             $this->_logger->log(
                 sprintf(
                     'Lock %s set successfully by %s in scope %s on "%s"',
-                    $lockid, $requestor, $scope, $principal
+                    $lockid,
+                    $requestor,
+                    $scope,
+                    $principal
                 ),
                 'DEBUG'
             );
@@ -249,14 +257,15 @@ class Horde_Lock_Mongo extends Horde_Lock
         try {
             /* Since we're trying to clear the lock we don't care whether it is
              * still valid or not. Unconditionally remove it. */
-            $this->_db->remove(array(self::LID => $lockid));
+            $this->_db->remove([self::LID => $lockid]);
         } catch (MongoException $e) {
             throw new Horde_Lock_Exception($e);
         }
 
         if ($this->_logger) {
             $this->_logger->log(
-                sprintf('Lock %s cleared successfully.', $lockid), 'DEBUG'
+                sprintf('Lock %s cleared successfully.', $lockid),
+                'DEBUG'
             );
         }
 
@@ -269,12 +278,12 @@ class Horde_Lock_Mongo extends Horde_Lock
     public function gc()
     {
         try {
-            $result = $this->_db->remove(array(
-                self::EXPIRY_TS => array(
+            $result = $this->_db->remove([
+                self::EXPIRY_TS => [
                     '$lt' => time(),
-                    '$ne' => Horde_Lock::PERMANENT
-                )
-            ));
+                    '$ne' => Horde_Lock::PERMANENT,
+                ],
+            ]);
 
             if ($this->_logger) {
                 $this->_logger->log(
@@ -285,7 +294,8 @@ class Horde_Lock_Mongo extends Horde_Lock
                     'DEBUG'
                 );
             }
-        } catch (MongoException $e) {}
+        } catch (MongoException $e) {
+        }
     }
 
     /**
@@ -295,7 +305,7 @@ class Horde_Lock_Mongo extends Horde_Lock
      */
     protected function _mapFields($res)
     {
-        $out = array();
+        $out = [];
 
         if ($res) {
             foreach ($res as $key => $val) {
