@@ -1,34 +1,38 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/lock",
     "description": "Resource locking library",
-    "type": "library",
+    "type": "horde-library",
     "homepage": "https://www.horde.org/libraries/Horde_Lock",
     "license": "LGPL-2.1-only",
     "authors": [
+        {
+            "name": "Ralf Lang",
+            "email": "ralf.lang@ralf-lang.de",
+            "role": "maintainer"
+        },
         {
             "name": "Ben Klang",
             "email": "ben@alkaloid.net",
             "role": "lead"
         }
     ],
-    "time": "2022-11-04",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://horde-satis.maintaina.com"
-        }
+    "keywords": [
+        "resource_locking",
+        "semaphore"
     ],
+    "time": "2026-04-07",
+    "repositories": [],
     "require": {
-        "php": "^7.4 || ^8",
-        "horde/exception": "^3 || dev-FRAMEWORK_6_0",
-        "horde/support": "^3 || dev-FRAMEWORK_6_0"
+        "horde/horde-installer-plugin": "^3 || ^2",
+        "php": "^8.1",
+        "horde/exception": "^3",
+        "horde/support": "^3"
     },
     "require-dev": {},
     "suggest": {
-        "horde/db": "^3 || dev-FRAMEWORK_6_0",
-        "horde/log": "^3 || dev-FRAMEWORK_6_0",
-        "horde/mongo": "^2 || dev-FRAMEWORK_6_0"
+        "horde/db": "^3",
+        "horde/log": "^3",
+        "horde/mongo": "^2"
     },
     "autoload": {
         "psr-0": {
@@ -44,5 +48,11 @@
         "allow-plugins": {
             "horde/horde-installer-plugin": true
         }
-    }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-FRAMEWORK_6_0": "3.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
 }
