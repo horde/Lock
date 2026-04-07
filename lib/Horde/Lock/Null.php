@@ -1,8 +1,9 @@
 <?php
+
 /**
  * A null driver for Horde_Lock.
  *
- * Copyright 2010-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2010-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you did
  * not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -23,7 +24,7 @@ class Horde_Lock_Null extends Horde_Lock
      */
     public function getLockInfo($lockid)
     {
-        return array();
+        return [];
     }
 
     /**
@@ -44,7 +45,7 @@ class Horde_Lock_Null extends Horde_Lock
      */
     public function getLocks($scope = null, $principal = null, $type = null)
     {
-        return array();
+        return [];
     }
 
     /**
@@ -97,9 +98,13 @@ class Horde_Lock_Null extends Horde_Lock
      * @return mixed   A string lock ID.
      * @throws Horde_Lock_Exception
      */
-    public function setLock($requestor, $scope, $principal, $lifetime = 1,
-                            $exclusive = Horde_Lock::TYPE_SHARED)
-    {
+    public function setLock(
+        $requestor,
+        $scope,
+        $principal,
+        $lifetime = 1,
+        $exclusive = Horde_Lock::TYPE_SHARED
+    ) {
         return strval(new Horde_Support_Uuid());
     }
 

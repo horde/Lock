@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author     Michael Slusarz <slusarz@horde.org>
  * @category   Horde
@@ -7,9 +8,14 @@
  * @package    Lock
  * @subpackage UnitTests
  */
+
 namespace Horde\Lock\Storage;
+
 use Horde_Lock_Storage_TestBase as TestBase;
 
+/**
+ * @coversNothing
+ */
 class MongoTest extends TestBase
 {
     private $_dbname = 'horde_lock_mongodbtest';
@@ -17,22 +23,22 @@ class MongoTest extends TestBase
 
     protected function _getBackend()
     {
-        if (($config = self::getConfig('LOCK_MONGO_TEST_CONFIG', __DIR__ . '/..')) &&
-            isset($config['lock']['mongo'])) {
+        if (($config = self::getConfig('LOCK_MONGO_TEST_CONFIG', __DIR__ . '/..'))
+            && isset($config['lock']['mongo'])) {
             $factory = new Horde_Test_Factory_Mongo();
-            $this->_mongo = $factory->create(array(
+            $this->_mongo = $factory->create([
                 'config' => $config['lock']['mongo'],
-                'dbname' => $this->_dbname
-            ));
+                'dbname' => $this->_dbname,
+            ]);
         }
 
         if (empty($this->_mongo)) {
             $this->markTestSkipped('MongoDB not available.');
         }
 
-        return new Horde_Lock_Mongo(array(
+        return new Horde_Lock_Mongo([
             'mongo_db' => $this->_mongo,
-        ));
+        ]);
     }
 
     public function tearDown(): void

@@ -1,9 +1,10 @@
 <?php
+
 /**
  * The Horde_Lock class provides an API to create, store, check and expire locks
  * based on a given resource URI.
  *
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * See the enclosed file LICENSE for license information (LGPL). If you did
  * not receive this file, see http://www.horde.org/licenses/lgpl21.
@@ -15,9 +16,9 @@
 abstract class Horde_Lock
 {
     /* Class constants. */
-    const TYPE_EXCLUSIVE = 1;
-    const TYPE_SHARED = 2;
-    const PERMANENT = -1;
+    public const TYPE_EXCLUSIVE = 1;
+    public const TYPE_SHARED = 2;
+    public const PERMANENT = -1;
     /**
      * Driver parameters.
      *
@@ -40,7 +41,7 @@ abstract class Horde_Lock
      * 'logger' - (Horde_Log_Logger) A logger instance.
      * </pre>
      */
-    public function __construct($params = array())
+    public function __construct($params = [])
     {
         if (!empty($params['logger'])) {
             $this->_logger = $params['logger'];
@@ -76,8 +77,11 @@ abstract class Horde_Lock
      *                return an empty array.
      * @throws Horde_Lock_Exception
      */
-    abstract public function getLocks($scope = null, $principal = null,
-                                      $type = null);
+    abstract public function getLocks(
+        $scope = null,
+        $principal = null,
+        $type = null
+    );
 
     /**
      * Extend the valid lifetime of a valid lock to now + $extend.
@@ -126,9 +130,13 @@ abstract class Horde_Lock
      * @return mixed   A string lock ID.
      * @throws Horde_Lock_Exception
      */
-    abstract public function setLock($requestor, $scope, $principal,
-                                     $lifetime = 1,
-                                     $exclusive = Horde_Lock::TYPE_SHARED);
+    abstract public function setLock(
+        $requestor,
+        $scope,
+        $principal,
+        $lifetime = 1,
+        $exclusive = Horde_Lock::TYPE_SHARED
+    );
 
     /**
      * Removes a lock given the lock ID.

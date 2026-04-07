@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author     Michael Slusarz <slusarz@horde.org>
  * @category   Horde
@@ -7,11 +8,16 @@
  * @package    Lock
  * @subpackage UnitTests
  */
-namespace Horde\Lock\Storage;
-use Horde_Lock_Storage_TestBase as TestBase;
-use \Horde_Test_Factory_Db;
-use \Horde_Lock_Sql;
 
+namespace Horde\Lock\Storage;
+
+use Horde_Lock_Storage_TestBase as TestBase;
+use Horde_Test_Factory_Db;
+use Horde_Lock_Sql;
+
+/**
+ * @coversNothing
+ */
 class SqlTest extends TestBase
 {
     protected static $_migrationDir;
@@ -34,18 +40,18 @@ class SqlTest extends TestBase
         $factory_db = new Horde_Test_Factory_Db();
 
         try {
-            $db = $factory_db->create(array(
-                'migrations' => array(
-                    'migrationsPath' => self::$_migrationDir
-                )
-            ));
+            $db = $factory_db->create([
+                'migrations' => [
+                    'migrationsPath' => self::$_migrationDir,
+                ],
+            ]);
         } catch (Horde_Test_Exception $e) {
             $this->markTestSkipped('Test DB not available.');
         }
 
-        return new Horde_Lock_Sql(array(
-            'db' => $db
-        ));
+        return new Horde_Lock_Sql([
+            'db' => $db,
+        ]);
     }
 
 }
