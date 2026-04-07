@@ -9,7 +9,6 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: |+
-    
 3.0.0alpha4:
   api: 3.0.0alpha1
   state:
@@ -52,6 +51,29 @@
     identifier: LGPL-2.1
     uri: http://www.horde.org/licenses/lgpl21
   notes: ~
+3.0.0-beta1:
+  api: 3.0.0-beta1
+  state:
+    release: beta
+    api: beta
+  date: 2026-04-07
+  license:
+    identifier: LGPL-2.1-only
+    uri: https://spdx.org/licenses/LGPL-2.1-only.html
+  notes: |-
+    chore: metadata
+    test: Make test suite compatible with PHPUnit 13
+    chore: metadata update
+    style: php-cs-fixer
+    Merge pull request #2 from horde/TDannhauer-horde-lock-patch1
+    Update Sql.php to fix database driver warning due to missing SQL sequence
+    Development mode for Lock-3.0.0alpha5
+    Released Lock-3.0.0alpha4
+    Update metadata and workflows for PHP 8 support
+    Add CI job for satis repo update
+    ci.yml and bootstrap.php adapted
+    no errors left
+    Development mode for Lock-3.0.0alpha5
 2.1.4:
   api: 1.1.0
   state:
@@ -133,17 +155,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Re-packaged 2.0.0 release.
-2.0.0:
-  api: 1.1.0
-  state:
-    release: stable
-    api: stable
-  date: 2012-10-30
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First stable release for Horde 5.
 2.0.0beta1:
   api: 1.1.0
   state:
@@ -167,6 +178,17 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     First alpha release for Horde 5.
+2.0.0:
+  api: 1.1.0
+  state:
+    release: stable
+    api: stable
+  date: 2012-10-30
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 5.
 1.0.1:
   api: 1.0.0
   state:
@@ -178,39 +200,6 @@
     uri: http://www.horde.org/licenses/lgpl21
   notes: |
     [jan] Expand width of lock_owner column (Bug #10608).
-1.0.0:
-  api: 1.0.0
-  state:
-    release: stable
-    api: stable
-  date: 2011-04-06
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First stable release for Horde 4.
-1.0.0RC2:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-29
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    Second release candidate for Horde 4.
-1.0.0RC1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-22
-  license:
-    identifier: LGPL-2.1
-    uri: http://www.horde.org/licenses/lgpl21
-  notes: |
-    First release candidate for Horde 4.
 1.0.0beta1:
   api: 1.0.0
   state:
@@ -234,3 +223,36 @@
   notes: |
     First alpha release for Horde 4.
     Add Null driver.
+1.0.0RC2:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    Second release candidate for Horde 4.
+1.0.0RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-22
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First release candidate for Horde 4.
+1.0.0:
+  api: 1.0.0
+  state:
+    release: stable
+    api: stable
+  date: 2011-04-06
+  license:
+    identifier: LGPL-2.1
+    uri: http://www.horde.org/licenses/lgpl21
+  notes: |
+    First stable release for Horde 4.
