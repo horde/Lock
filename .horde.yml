@@ -7,14 +7,12 @@ list: dev
 type: library
 homepage: https://www.horde.org/libraries/Horde_Lock
 authors:
-  -
-    name: Ralf Lang
+  - name: Ralf Lang
     user: rlang
     email: ralf.lang@ralf-lang.de
     active: true
     role: maintainer
-  -
-    name: Ben Klang
+  - name: Ben Klang
     user: bklang
     email: ben@alkaloid.net
     active: false
@@ -48,3 +46,30 @@ keywords:
   - resource_locking
   - semaphore
 vendor: horde
+ci-platform:
+  '8.1':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+  '8.2':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+  '8.3':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+  '8.4':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+  '8.5':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+  '8.6':
+    - php: ^7.4 || ^8
+    - composer-plugin-api: ^2.2.0
+    - ext-dom
+ci-platform-flags:
+  needs_installer_plugin: true

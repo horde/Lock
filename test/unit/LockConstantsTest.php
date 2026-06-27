@@ -15,6 +15,7 @@ use Horde_Lock;
 use Horde_Lock_Null;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use Horde_Log_Logger;
 
 #[CoversClass(Horde_Lock::class)]
 class LockConstantsTest extends TestCase
@@ -44,7 +45,7 @@ class LockConstantsTest extends TestCase
 
     public function testConstructorAcceptsLogger(): void
     {
-        $logger = $this->createStub(\Horde_Log_Logger::class);
+        $logger = $this->createStub(Horde_Log_Logger::class);
         $driver = new Horde_Lock_Null(['logger' => $logger]);
 
         // Logger is consumed and stored — driver still works
