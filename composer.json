@@ -20,7 +20,7 @@
         "resource_locking",
         "semaphore"
     ],
-    "time": "2026-04-07",
+    "time": "2026-06-27",
     "repositories": [],
     "require": {
         "horde/horde-installer-plugin": "dev-FRAMEWORK_6_0 || ^3 || ^2",
